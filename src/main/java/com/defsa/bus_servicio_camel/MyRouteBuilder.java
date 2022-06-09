@@ -48,8 +48,9 @@ public class MyRouteBuilder extends RouteBuilder {
         
         from("direct:consumirApiFactura")
         .setHeader(Exchange.HTTP_METHOD, constant("GET"))//->Le decimos a Camel como acceder al recurso
-        .to("http://localhost:8080/factura")// Ruta del servio del api
+        .to("http://localhost:8081/factura/1")// Ruta del servio del api
         .unmarshal(jDataFormat)
+        //.to("mock:marshalledObject")
         .process(new ProcessDataResponseApiRest())
         .end();
         

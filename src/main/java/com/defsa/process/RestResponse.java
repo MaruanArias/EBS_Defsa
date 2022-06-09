@@ -17,23 +17,25 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "RestResponse"
+	"messages",
+    "result"
 })
-public class DataFactura {
-
-    @JsonProperty("RestResponse")
-    private RestResponse restResponse;
+public class RestResponse {
+	@JsonProperty("messages")
+    private List<String> messages = null;
+    @JsonProperty("result")
+    private List<Result> result = null;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("RestResponse")
-    public RestResponse getRestResponse() {
-        return restResponse;
+    @JsonProperty("result")
+    public List<Result> getResult() {
+        return result;
     }
 
-    @JsonProperty("RestResponse")
-    public void setRestResponse(RestResponse restResponse) {
-        this.restResponse = restResponse;
+    @JsonProperty("result")
+    public void setResult(List<Result> result) {
+        this.result= result;
     }
 
     @JsonAnyGetter
@@ -45,5 +47,15 @@ public class DataFactura {
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
     }
+    @JsonProperty("messages")
+	public List<String> getMessages() {
+		return messages;
+	}
+    @JsonProperty("messages")
+	public void setMessages(List<String> messages) {
+		this.messages = messages;
+	}
+    
+    
 
 }
