@@ -22,4 +22,17 @@ public class PedidoService {
     public PedidoModel guardarPedido(PedidoModel pedido){
         return pedidoRepository.save(pedido);
     }
+
+    public Optional<PedidoModel> obtenerPorId(Integer id){
+        return pedidoRepository.findById(id);
+    }
+
+    public boolean eliminarPedido(Integer id) {
+        try{
+            pedidoRepository.deleteById(id);
+            return true;
+        }catch(Exception err){
+            return false;
+        }
+    }
 }

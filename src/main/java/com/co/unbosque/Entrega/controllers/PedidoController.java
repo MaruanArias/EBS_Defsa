@@ -25,4 +25,20 @@ public class PedidoController {
     public PedidoModel guardarPedido(@RequestBody PedidoModel pedido){
         return this.pedidoService.guardarPedido(pedido);
     }
+
+    @GetMapping( path = "/{id}")
+    public Optional<PedidoModel> obtenerPedidoPorId(@PathVariable("id") Integer id) {
+        return this.pedidoService.obtenerPorId(id);
+    }
+
+
+    @DeleteMapping( path = "/{id}")
+    public String eliminarPorId(@PathVariable("id") Integer id){
+        boolean ok = this.pedidoService.eliminarPedido(id);
+        if (ok){
+            return "Se eliminó el Pedido con id " + id;
+        }else{
+            return "No pudo eliminar el Pedido con id" + id;
+        }
+    }
 }
