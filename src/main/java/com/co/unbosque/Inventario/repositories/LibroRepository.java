@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LibroRepository extends CrudRepository<LibroModel, Short>{
-    //public abstract ArrayList<LibroModel> findByPrioridad(Integer prioridad);
+    
 }

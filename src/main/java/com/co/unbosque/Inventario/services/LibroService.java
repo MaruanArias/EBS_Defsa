@@ -22,17 +22,12 @@ public class LibroService {
         return libroRepository.save(libro);
     }
 
-    /**
-    public Optional<LibroModel> obtenerPorId(Long id){
+   
+    public Optional<LibroModel> obtenerPorId(short id){
         return libroRepository.findById(id);
     }
 
-
-    public ArrayList<LibroModel>  obtenerPorPrioridad(Integer prioridad) {
-        return libroRepository.findByPrioridad(prioridad);
-    }
-
-    public boolean eliminarLibro(Long id) {
+    public boolean eliminarLibro(short id) {
         try{
             libroRepository.deleteById(id);
             return true;
@@ -40,5 +35,5 @@ public class LibroService {
             return false;
         }
     }
-    */
+    
 }

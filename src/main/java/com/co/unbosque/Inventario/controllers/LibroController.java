@@ -26,24 +26,20 @@ public class LibroController {
         return this.libroService.guardarLibro(libro);
     }
 
-    /**
+    
     @GetMapping( path = "/{id}")
-    public Optional<LibroModel> obtenerLibroPorId(@PathVariable("id") Long id) {
+    public Optional<LibroModel> obtenerLibroPorId(@PathVariable("id") short id) {
         return this.libroService.obtenerPorId(id);
     }
 
-    @GetMapping("/query")
-    public ArrayList<LibroModel> obtenerLibroPorPrioridad(@RequestParam("prioridad") Integer prioridad){
-        return this.libroService.obtenerPorPrioridad(prioridad);
-    }
 
     @DeleteMapping( path = "/{id}")
-    public String eliminarPorId(@PathVariable("id") Long id){
+    public String eliminarPorId(@PathVariable("id") short id){
         boolean ok = this.libroService.eliminarLibro(id);
         if (ok){
             return "Se eliminó el libro con id " + id;
         }else{
             return "No pudo eliminar el libro con id" + id;
         }
-    }*/
+    }
 }
