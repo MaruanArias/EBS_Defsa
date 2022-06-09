@@ -7,6 +7,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.jackson.JacksonDataFormat;
 
 import com.defsa.process.DataFactura;
+import com.defsa.process.DataFacturav2;
 import com.defsa.process.ProcessDataExchangeProcessor;
 import com.defsa.process.ProcessDataResponseApiRest;
 import com.defsa.process.SetDataExchangeProcessor;
@@ -18,7 +19,7 @@ public class MyRouteBuilder extends RouteBuilder {
 	private JacksonDataFormat jDataFormat;
 	
 	public MyRouteBuilder() {
-		jDataFormat=new JacksonDataFormat(DataFactura.class);
+		jDataFormat=new JacksonDataFormat(DataFacturav2.class);
 	}
     private int index;
 
