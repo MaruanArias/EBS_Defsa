@@ -21,17 +21,12 @@ public class FacturaService {
     public FacturaModel guardarFactura(FacturaModel factura){
         return facturaRepository.save(factura);
     }
-/** 
-    public Optional<FacturaModel> obtenerPorId(Long id){
+
+    public Optional<FacturaModel> obtenerPorId(Integer id){
     return facturaRepository.findById(id);
     }
 
-
-    public ArrayList<FacturaModel>  obtenerPorPrioridad(Integer prioridad) {
-        return facturaRepository.findByPrioridad(prioridad);
-    }
-
-    public boolean eliminarFactura(Long id) {
+    public boolean eliminarFactura(Integer id) {
         try{
             facturaRepository.deleteById(id);
             return true;
@@ -39,5 +34,5 @@ public class FacturaService {
             return false;
         }
     }
-    */
+    
 }

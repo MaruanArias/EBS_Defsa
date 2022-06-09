@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FacturaRepository extends CrudRepository<FacturaModel, Integer> {
-    //public abstract ArrayList<FacturaModel> findByPrioridad(Integer prioridad);
+    
 }

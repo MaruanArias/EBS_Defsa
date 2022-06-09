@@ -25,19 +25,14 @@ public class FacturaController {
     public FacturaModel guardarFactura(@RequestBody FacturaModel factura){
         return this.facturaService.guardarFactura(factura);
     }
-/** 
+
     @GetMapping( path = "/{id}")
-    public Optional<FacturaModel> obtenerFacturaPorId(@PathVariable("id") Long id) {
+    public Optional<FacturaModel> obtenerFacturaPorId(@PathVariable("id") Integer id) {
         return this.facturaService.obtenerPorId(id);
     }
 
-    @GetMapping("/query")
-    public ArrayList<FacturaModel> obtenerFacturaPorPrioridad(@RequestParam("prioridad") Integer prioridad){
-        return this.facturaService.obtenerPorPrioridad(prioridad);
-    }
-
     @DeleteMapping( path = "/{id}")
-    public String eliminarPorId(@PathVariable("id") Long id){
+    public String eliminarPorId(@PathVariable("id") Integer id){
         boolean ok = this.facturaService.eliminarFactura(id);
         if (ok){
             return "Se eliminó el factura con id " + id;
@@ -45,5 +40,5 @@ public class FacturaController {
             return "No pudo eliminar el factura con id" + id;
         }
     }
-    */
+    
 }
