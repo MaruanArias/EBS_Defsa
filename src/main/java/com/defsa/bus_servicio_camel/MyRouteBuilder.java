@@ -8,6 +8,7 @@ import org.apache.camel.component.jackson.JacksonDataFormat;
 
 import com.defsa.process.DataFactura;
 import com.defsa.process.DataFacturav2;
+import com.defsa.process.ProcessDataCreateApiRest;
 import com.defsa.process.ProcessDataExchangeProcessor;
 import com.defsa.process.ProcessDataResponseApiRest;
 import com.defsa.process.SetDataExchangeProcessor;
@@ -17,7 +18,6 @@ import com.defsa.process.SetDataExchangeProcessor;
  */
 public class MyRouteBuilder extends RouteBuilder {
 	private JacksonDataFormat jDataFormat;
-	
 	public MyRouteBuilder() {
 		jDataFormat=new JacksonDataFormat(DataFacturav2.class);
 	}
@@ -51,10 +51,17 @@ public class MyRouteBuilder extends RouteBuilder {
         .setHeader(Exchange.HTTP_METHOD, constant("GET"))//->Le decimos a Camel como acceder al recurso
         .to("http://localhost:8081/factura/1")// Ruta del servio del api
         .unmarshal(jDataFormat)
-        //.to("mock:marshalledObject")
         .process(new ProcessDataResponseApiRest())
         .end();
         
+        from("timer:simple?period=5000")
+        //.unmarshal(jDataFormat)
+        .process(new ProcessDataCreateApiRest())
+        .setHeader(Exchange.HTTP_METHOD, constant("POST"))
+        .setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
+        .to("http://localhost:8083/pedido/")
+        .end();
+
         // Declaración de productores y consumidores
       
 }

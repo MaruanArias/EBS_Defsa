@@ -7,6 +7,7 @@ import org.apache.camel.Processor;
 
 
 public class ProcessDataResponseApiRest implements Processor {
+public String codLibroTest;
 
 	@Override
 	public void process(Exchange exchange) throws Exception {
@@ -14,19 +15,19 @@ public class ProcessDataResponseApiRest implements Processor {
 		//System.err.print("Body -> "+exchange.getIn().getBody(String.class));
 		//DataFactura dataFactura=exchange.getIn().getBody(DataFactura.class);
 		DataFacturav2 dataFacturav2=exchange.getIn().getBody(DataFacturav2.class);
-		//System.out.println(exchange.getIn().getBody(DataFactura.class));
+		
 		
 		if(dataFacturav2 != null) {
 			System.err.println("dataFactura ready");
 			System.out.println("?"+dataFacturav2.toString());
-			//RestResponse  response = dataFactura.getRestResponse();
-			
-//			for (Result result : response.getResult()) {
-//				System.err.println(result.getId() + "->" + result.getCodCliente() + "->"+ result.getCodLibro() + "->" + result.getFormaPago() + "->" +result.getEstado() +"->"+result.getCosto());
-//			}
 			System.out.println("id: "+dataFacturav2.getId() +"-> "+"cod_cliente: "+dataFacturav2.getCodCliente()+"-> "+"cod Libro:"+dataFacturav2.getCodLibro() +"-> "+ "Forma de Pago: "+ dataFacturav2.getFormaPago() + "-> "+ "Estado: "+ dataFacturav2.getEstado() +"-> "+ "costo: "+ dataFacturav2.getCosto());
+			//exchange.getIn().setBody("{"+"\"nombreDestinatario\": \"Fabian\","+"\"formaEntrega\": \"Avion\","+"\"ciudadEntrega\": \"Bogota\","+"\"telefonoEntrega\": \"213499408\","+" \"idLibro\":"+dataFacturav2.getCodLibro());
+			ProcessDataCreateApiRest processDataCreateApiRest = new ProcessDataCreateApiRest();
+			processDataCreateApiRest.setCodLibro(dataFacturav2.getCodLibro());
+			
+			
 		}else
-			System.out.println("DataFactura NULL");
-		
+			System.out.println("DataFactura NULL");	
 	}
+
 }
