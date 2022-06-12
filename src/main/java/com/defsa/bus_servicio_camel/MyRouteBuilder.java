@@ -49,14 +49,14 @@ public class MyRouteBuilder extends RouteBuilder {
         
         from("direct:consumirApiFactura")
         .setHeader(Exchange.HTTP_METHOD, constant("GET"))//->Le decimos a Camel como acceder al recurso
-        .to("http://localhost:8081/factura/1")// Ruta del servio del api
+        .to("http://localhost:8081/factura/3")// Ruta del servio del api
         .unmarshal(jDataFormat)
         .process(new ProcessDataResponseApiRest())
         .end();
         
         from("timer:simple?period=5000")
         //.unmarshal(jDataFormat)
-        .process(new ProcessDataCreateApiRest())
+        .process(ProcessDataCreateApiRest.getInstance(null))
         .setHeader(Exchange.HTTP_METHOD, constant("POST"))
         .setHeader(Exchange.CONTENT_TYPE, constant("application/json"))
         .to("http://localhost:8083/pedido/")
